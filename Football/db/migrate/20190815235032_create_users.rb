@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :password_digest
       t.integer :age
       t.integer :seriousness_level
+      t.integer :fantasy_league_id
 
       t.timestamps
     end
