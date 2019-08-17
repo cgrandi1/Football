@@ -4,14 +4,17 @@ class SessionsController < ApplicationController
     end 
 
 
-    def create
-        @user = User.find_by(name: params[:user_name])
-        if session[:id] = @user.id
-            redirect_to user_path(@user)
-        else
-            redirect_to '/'
+    def create 
+        @user = User.find_by(id: params[:user_id])
+        if @user && @user.authenticate(params [:user][:password]) 
+            if session[:user_id] = @user.id
+                redirect_to user_fantasy_leagues_path(@user)
+            else 
+                redirect_to 'root_path' 
+            end
         end 
     end 
+  
 
 
     def destroy 

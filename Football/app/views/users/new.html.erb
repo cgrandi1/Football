@@ -1,7 +1,8 @@
 <h1>Sign Up Here!</h1>
 
 <h2>Create Your Account</h2>
-<%= form_tag users_path, method: "post" do %>
+
+<%= form_for @user do |f| %>
 
   <% if @user.errors.any? %>
   <div id="error_explanation">
@@ -14,36 +15,36 @@
     </div>
   <% end %>
 
-  <div class="field<%= ' field_with_errors' if @user.errors[:name].any? %>">
-    <%= label_tag "name", "Name" %>
-    <%= text_field_tag "name", @user.name %>
+  <div class="field" >
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
 
-  <div class="field<%= ' field_with_errors' if @user.errors[:email].any? %>">
-    <%= label_tag "email", "Email" %>
-    <%= text_field_tag "email", @user.email %>
+  <div class="field" >
+    <%= f.label :email %>
+    <%= f.text_field :email  %>
   </div>
 
-  <div class="field<%= ' field_with_errors' if @user.errors[:password].any? %>">
-    <%= label_tag "password", "Password" %>
-    <%= password_field_tag "password_digest", @user.password_digest %>
+  <div class="field">
+    <%= f.label :password%>
+    <%= f.password_field :password %>
   </div>
 
-  <div class="field<%= ' field_with_errors' if @user.errors[:password_confirmation].any? %>">
-  <%= label_tag "password", "Password Conformation" %>
-  <%= password_field_tag "password_confirmation", @user.password_confirmation %>
+  <div class="field">
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
 </div>
 
 
-  <div class="field<%= ' field_with_errors' if @user.errors[:age].any? %>">
-    <%= label_tag "age", "Age" %>
-    <%= number_field_tag "age", @user.age %>
+  <div class="field">
+    <%= f.label :age %>
+    <%= f.number_field :age %>
   </div>
 
-  <div class="field<%= ' field_with_errors' if @user.errors[:seriousness_level].any? %>">
-  <%= label_tag "age", "Seriousness_level" %>
-  <%= number_field_tag "seriousness_level", @user.seriousness_level %>
+  <div class="field">
+  <%= f.label :seriousness_level%>
+  <%= f.number_field :seriousness_level %>
 </div>
 
-  <%= submit_tag "Create your account" %>
+  <%= f.submit "Create your account" %>
 <% end %>
