@@ -5,11 +5,11 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.new(user_params)
-        fantasy = Fantasy.find_by(id: params[:user_id])
+        @fantasy = Fantasy_League.find_by(id: params[:user][fantasy_league_id])
         if @user.valid?
             if session[:user_id] = @user.id
                 @user.save
-                redirect_to user_fantasy_leagues_path(fantasy)
+                redirect_to user_fantasy_leagues_path(@fantasy)
             else 
                 redirect_to root_path
             end 
@@ -27,6 +27,6 @@ class UsersController < ApplicationController
     private 
 
     def user_params
-
+        params.require(:user).permit(:name, :age, :seriousness_level, :email, :password)
     end 
 end

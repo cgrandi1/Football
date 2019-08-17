@@ -1,0 +1,16 @@
+<%= form_for (@fantasy) do |f|%>
+    <%= f.label :name%>
+    <%= f.text_field :name %>
+    <br>
+ 
+    <%= f.label :cost %>
+    <%= f.number_field :cost %>
+    <br>
+ 
+    <%= f.label :people_in_league %>
+    <%= f.number_field :people_in_league %>
+    <br>
+
+    <%= f.submit %>
+
+ <% end %>
