@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_many :leagues
+    has_many :players, :through => :leagues
     has_secure_password 
     
     validates :name, presence: true 

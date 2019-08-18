@@ -1,0 +1,22 @@
+<%= @league.name %>
+
+<% 10.times do %>
+    <%= form_for (@player) do |f|%>
+        <%= f.label :name%>
+        <%= f.text_field :name %>
+        <br>
+
+        <%= f.label :position
+        <%= f.select :player_id, options_from_collection_for_select(Player.all, :id, :position) %><br>
+ 
+        <%= f.label :starter %>
+        <%= f.check_box :starter %>
+
+        <%= f.label :fantasy_points %>
+        <%= f.number_field :fantasy_points %>
+ 
+        <br>
+
+        <%= f.submit %>
+
+        <%end%>

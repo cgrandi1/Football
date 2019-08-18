@@ -1,3 +1,0 @@
-class FantasyLeague < ApplicationRecord
-
-end

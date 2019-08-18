@@ -1,0 +1,11 @@
+<section class="fantasyapp">
+    <header class="header">
+        <h1>A List of your Leagues</h1>
+    </header>
+
+    <ul class="leagues">
+        <%=@leagues.each do |league|%>
+            %= content_tag(:p, (link_to "Click to Show Your Players: #{league.name}", league_players_path
+        <%end%>
+
+        <%= link_to "Create New League", new_user_league_path %>

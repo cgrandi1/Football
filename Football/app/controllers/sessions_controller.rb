@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         @user = User.find_by(id: params[:user_id])
         if @user && @user.authenticate(params [:user][:password]) 
             if session[:user_id] = @user.id
-                redirect_to user_fantasy_leagues_path(@user)
+                redirect_to user_leagues_path(@user)
             else 
                 redirect_to 'root_path' 
             end
