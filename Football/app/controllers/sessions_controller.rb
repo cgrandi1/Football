@@ -4,18 +4,16 @@ class SessionsController < ApplicationController
     end 
 
 
-    def create 
-        @user = User.find_by(id: params[:user_id])
-        if @user && @user.authenticate(params [:user][:password]) 
+    def create
+        @user = User.find_by(email: params[:user_email])
+        if @user && @user.authenticate(params[:password]) 
             if session[:user_id] = @user.id
-                redirect_to user_leagues_path(@user)
+                redirect_to leagues_path
             else 
                 redirect_to 'root_path' 
             end
         end 
     end 
-  
-
 
     def destroy 
         session.delte :user_id

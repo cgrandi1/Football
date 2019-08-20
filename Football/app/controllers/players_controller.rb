@@ -1,15 +1,18 @@
 class PlayersController < ApplicationController
 
     def new 
-        @player = Player.new
-        @league = League.find_by(id :params[:id])
-        binding.pry
+        @player = Player.new    
+    end
+    
+    def show 
+        @players = Player.find(params[:id])
     end 
 
     def create 
-        @player = Player.new(league_params)
+        @league = League.find_by(id :params[:league_id])
+        @player = Player.new(player_params)
         @player.save
-        redirect_to user_league_path
+        redirect_to league_player_path(@player)
     end 
 
     def edit 

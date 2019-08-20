@@ -5,7 +5,7 @@
 
     <ul class="leagues">
         <%=@leagues.each do |league|%>
-            %= content_tag(:p, (link_to "Click to Show Your Players: #{league.name}", league_players_path
+            %= content_tag(:p, (link_to "Click to Show Details of Your League and to Show and/or Create Your Players: #{league.name}", league_players_path
         <%end%>
 
-        <%= link_to "Create New League", new_user_league_path %>
+        <%= link_to "Create New League", new_league_path %>

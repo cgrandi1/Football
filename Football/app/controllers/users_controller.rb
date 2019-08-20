@@ -8,7 +8,9 @@ class UsersController < ApplicationController
         # @fantasy = Fantasy_League.find_by(id: params[:user][fantasy_league_id])
         if @user.valid?
             @user.save
-            redirect_to user_leagues_path(@user)
+            session[:user_id] = @user.id  #logs in the user
+            redirect_to leagues_path(@user)
+            
         else 
             redirect_to root_path 
         end 
