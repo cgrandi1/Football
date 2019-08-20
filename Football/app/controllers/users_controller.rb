@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.new(user_params)
-        # @fantasy = Fantasy_League.find_by(id: params[:user][fantasy_league_id])
         if @user.valid?
             @user.save
             session[:user_id] = @user.id  #logs in the user

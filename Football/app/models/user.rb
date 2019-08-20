@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_many :leagues
-    has_many :players, :through => :leagues
+    has_many :teams, :through => :leagues
     
     has_secure_password 
     

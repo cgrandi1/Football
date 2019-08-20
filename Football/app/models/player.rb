@@ -1,9 +1,5 @@
 class Player < ApplicationRecord
 
-    belongs_to :user
-    belongs_to :league
-
-    def mulitple_positions
-        self.position.create(position: "RB"|| "QB"|| "TE"|| "WR"|| "DEF"|| "K")
-    end
+    has_and_belongs_to_many :teams
+  
 end

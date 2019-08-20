@@ -1,13 +1,13 @@
 <h1>Your Team Name: <%=@league.name %></h1><br>
 
-<p>The Cost This League: <%= @league.cost %></p><br>
+<p>This League Costs: <%= @league.cost %></p><br>
 
-<p>The Amount of People: <%= @league.people_in_league %><p><br>
+<p>The Amount of People in this League: <%= @league.people_in_league %><p><br>
 
 
 
 <%= link_to "Edit League", edit_league_path %><br>
 
-<%= link_to "Show Players", league_player_path(@league) %><br>
+<%= link_to "Show Players", league_team_path(@league) %><br>
 
-<%= link_to "Build Your Team", new_league_player_path(@league) %><br>
+<%= link_to "Build Your Team", new_league_team_path(@league) %><br>

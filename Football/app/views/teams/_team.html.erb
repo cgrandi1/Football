@@ -1,0 +1,31 @@
+
+    <%= form_for @team do |f|%>
+        <%= f.label :name %>
+        <%= f.text_field :name %><br>
+
+        <%= f.fields_for :players do |addr|
+            <%= addr.label :name %>
+            <%= addr.text_field :name %><br>
+            <br>
+
+            <%= addr.label :position %>
+            <%= addr.select :position, options_for_select("Player.all.positions") %><br>
+            <br>
+ 
+            <%= addr.label :starter %>
+            <%= addr.check_box :starter %><br>
+
+            <%= addr.label :fantasy_points %>
+            <%= addr.number_field :fantasy_points %><br>
+            <br>
+        <% end %>
+
+        <%= hidden_field_tag 'team[league_id]', params[:league_id] %>
+
+        <%=f.submit %>
+
+    <%end%>
+
+
+
+      
