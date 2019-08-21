@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         if @user.valid?
             @user.save
             session[:user_id] = @user.id  #logs in the user
-            redirect_to leagues_path(@user)
+            redirect_to user_leagues_path(@user)
             
         else 
             redirect_to root_path 

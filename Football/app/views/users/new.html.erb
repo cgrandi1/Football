@@ -2,6 +2,8 @@
 
 <h2>Create Your Account</h2>
 
+<%= flash[:message] if flash[:message] %>
+
 <%= form_for @user do |f| %>
 
   <% if @user.errors.any? %>

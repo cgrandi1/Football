@@ -1,15 +1,17 @@
 <h1>Manage Your Fantasy Football Leagues: </h1>
 
+<%= flash[:message] if flash[:message] %>
 
-<%= form_tag '/signin' do %>
-    <p> Existing User: </p>
-    <%=label_tag 'email' %>
-    <%= text_field_tag 'email' %></br>
+<p> Existing User: </p>
 
-    <%=label_tag 'password' %>
-    <%=text_field_tag 'password' %></br>
+<%= form_for @user, url: '/signin' do |f| %>
+    <%=f.label :email %>
+    <%= f.text_field :email %></br>
 
-    <%= submit_tag 'Sign In' %></br>
+    <%=f.label :password %>
+    <%=f.password_field :password %></br>
+
+    <%= f.submit 'Sign In' %></br>
 
     <%end%></br>
 

@@ -1,21 +1,24 @@
 
     <%= form_for @team do |f|%>
-        <%= f.label :name %>
+        <%= f.label :team_name %>
         <%= f.text_field :name %><br>
 
-        <%= f.fields_for :players do |addr|
-            <%= addr.label :name %>
+        <br>
+
+        <%= f.fields_for :players do |addr| %>
+            <%="New Player" %><br>
+            <%= addr.label :player_name %>
             <%= addr.text_field :name %><br>
             <br>
 
-            <%= addr.label :position %>
-            <%= addr.select :position, options_for_select("Player.all.positions") %><br>
+            <%= addr.label :player_position %>
+            <%= addr.text_field :position %><br>
             <br>
  
             <%= addr.label :starter %>
             <%= addr.check_box :starter %><br>
 
-            <%= addr.label :fantasy_points %>
+            <%= addr.label :player_fantasy_points %>
             <%= addr.number_field :fantasy_points %><br>
             <br>
         <% end %>

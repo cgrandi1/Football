@@ -6,8 +6,8 @@
 
 
 
-<%= link_to "Edit League", edit_league_path %><br>
+<%= link_to "Edit League", edit_user_league_path(@user) %><br>
 
-<%= link_to "Show Players", league_team_path(@league) %><br>
+<%= link_to "Show Players", user_league_team_path(@user, @league) %><br>
 
-<%= link_to "Build Your Team", new_league_team_path(@league) %><br>
+<%= link_to "Build Your Team", new_user_league_team_path(@user, @league) %><br>

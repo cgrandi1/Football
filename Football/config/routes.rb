@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy' 
   
-  
-    resources :leagues do 
+  resources :users do
+    resources :leagues do
       resources :teams 
     end 
+  end  
 end

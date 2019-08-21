@@ -6,5 +6,7 @@ class League < ApplicationRecord
     validates :cost, presence: true
     validates :people_in_league, presence: true
 
+    #params in new league, 
+
 end
 

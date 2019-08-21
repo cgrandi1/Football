@@ -1,1 +1,13 @@
 
+<h1><%=@team.name%></h1>
+
+<% @team.players.each do |t| %>
+
+    <%=t.name %>
+    <%=t.position %>
+    <%=t.starter %> if :starter = true 
+    <%=t.fantasy_points %>
+
+    <%end%>
+
+

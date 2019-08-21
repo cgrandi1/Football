@@ -2,8 +2,7 @@ class LeaguesController < ApplicationController
     before_action :require_login
 
     def index
-        @leagues = current_user.leagues
-        #@leagues = League.all
+        @user = User.find_by(id: params[:user_id])
     end 
 
     def new 
@@ -11,23 +10,24 @@ class LeaguesController < ApplicationController
     end 
 
     def create 
-        @league = League.new(league_params)
+        @user = current_user
+        @league = League.create(league_params)
         if @league.valid?
             @league.save
-            redirect_to league_path(@league)
+            redirect_to user_league_path(@user, @league)
         else 
-            flash[:message] = "Missing info a field"
+            flash[:message] = "Missing info in a field"
             redirect_to root_path 
         end 
     end 
 
     def show
-        @league = League.find_by(id: params[:id])
+        @league = League.find(params[:id])
         @user = current_user
     end 
 
     def edit 
-        @league = League.find_by(id: params[:user_id])
+        @league = League.find(id: params[:id])
     end 
 
     def update 
