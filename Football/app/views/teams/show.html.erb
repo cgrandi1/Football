@@ -3,11 +3,13 @@
 
 <% @team.players.each do |t| %>
 
-    <%=t.name %>
-    <%=t.position %>
-    <%=t.starter %> if :starter = true 
-    <%=t.fantasy_points %>
+    <p>Player Name: <%=t.name %></p>
+    <p>Player Position<%=t.position %></p>
+    <p>Player Starts?: <%=t.starter %></p>
+    <p>Player Fantasy Points: <%=t.fantasy_points %></p><br>
+    <br>
 
-    <%end%>
+<%end%>
 
 
+<%=link_to "Edit Team", edit_league_team_path(@league, @team) %>

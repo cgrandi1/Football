@@ -5,19 +5,18 @@ class TeamsController < ApplicationController
     
     def new 
         @user = current_user
-        @league = League.find_by(id: params[:lesson_id])
+        @league = League.find_by(id: params[:league_id])
         @team = Team.new
-        binding.pry
         12.times { @team.players.build() }
     end
     
 
-    def create 
-        # @user = current_user
-        # @league = League.find_by(id: params[:lesson_id])
-        @team = Team.create(team_params)
-        redirect_to user_league_team_path(@team.league.user, @team.league)
-
+    def create
+        @league = League.find_by(id: params[:team][:league_id])
+        @team = Team.new(team_params)
+        @team.user = current_user
+        @team.save
+        redirect_to league_team_path(@league, @team)
     end 
 
     def show 
@@ -26,22 +25,22 @@ class TeamsController < ApplicationController
     end 
 
     def edit 
-        @user = User.find_by(params[:user_id])
-        @league = League.find_by(params[:league_id])
-        @team = Team.find(id: params[:id])
+        @user = current_user
+        @league = League.find_by(id: params[:league_id])
+        @team = Team.find(params[:id])
     end 
 
     def update 
         @team = Team.find(params[:id])
         @team.update(team_params)
         @team.save
-        redirect_to user_league_team_path(@league, @team)
+        redirect_to league_team_path(@league, @team)
     end 
 
 
     private
 
     def team_params
-        params.require(:team).permit(:name, player_attributes: [:name, :position, :fantasy_points, :starter])
+        params.require(:team).permit(:name, :league_id, :user_id, players_attributes: [:name, :position, :fantasy_points, :starter])
     end 
 end

@@ -14,7 +14,7 @@ class LeaguesController < ApplicationController
         @league = League.create(league_params)
         if @league.valid?
             @league.save
-            redirect_to user_league_path(@user, @league)
+            redirect_to new_league_team_path(@league)
         else 
             flash[:message] = "Missing info in a field"
             redirect_to root_path 

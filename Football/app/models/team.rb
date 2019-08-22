@@ -5,11 +5,19 @@ class Team < ApplicationRecord
 
     has_many :players
 
-    accepts_nested_attributes_for :players
+    #accepts_nested_attributes_for :players
 
 
-    def player_attributes=(player)
-        self.player = Player.find_or_create_by(name: player[:name], position: player[:position], starter: player[:starter], fantasy_points: player[:fantasy_points])
-        self.player.update(player)
+    def players_attributes=(attributes)
+        attributes.each do |player_attribute|
+            player = self.players.build(player_attribute[1])
+            player.save
+        end
     end 
-end
+end 
+
+
+
+    #     self.player = Player.find_or_create_by(name: player[:name], position: player[:position], starter: player[:starter], fantasy_points: player[:fantasy_points])
+    #     self.player.update(player)
+    # end 
