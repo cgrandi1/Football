@@ -32,11 +32,11 @@ class LeaguesController < ApplicationController
     end 
 
     def edit 
-        @league = League.find(id: params[:id])
+        @league = League.find(params[:id])
     end 
 
     def update 
-        @league = League.find_by(id: params[:user_id])
+        @league = League.find(params[:id])
         @league.update(league_params)
         @league.save
         redirect_to user_league_path(@league)
