@@ -3,6 +3,11 @@ class LeaguesController < ApplicationController
 
     def index
         @user = User.find_by(id: params[:user_id])
+        if @user = current_user
+            @user.leagues = League.all
+        else 
+            redirect_to root_path
+        end 
     end 
 
     def new 
@@ -14,7 +19,7 @@ class LeaguesController < ApplicationController
         @league = League.create(league_params)
         if @league.valid?
             @league.save
-            redirect_to new_league_team_path(@league)
+            redirect_to league_path(@league)
         else 
             flash[:message] = "Missing info in a field"
             redirect_to root_path 

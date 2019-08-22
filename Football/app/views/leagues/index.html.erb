@@ -3,10 +3,10 @@
 
     <ul>
         <%=@user.leagues.each do |league|%>
-            <%= content_tag(:p, (link_to "Click to Create Your Team: #{league.name}", new_user_league_team_path(@user, league))) %>
-            <%= content_tag(:p, (link_to "Click to Show Your Team: #{league.name}", user_league_team_path(@user, league)))%>
+    
+            <%= content_tag(:p, (link_to "Look Inside Your League: #{league.name}", league_path(league)))%>
         <%end%>
     
     </ul>
 
-        <%= link_to "Create New League", new_user_league_path %>
+        <%= link_to "Create New League", new_user_league_path(@user) %>

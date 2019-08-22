@@ -5,12 +5,11 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.new(user_params)
-        if @user.valid?
-            @user.save
+        if @user.save
             session[:user_id] = @user.id  #logs in the user
-            redirect_to user_leagues_path(@user)
-            
+             redirect_to user_leagues_path(@user)
         else 
+            flash[:message] = "Please Try Again! (Maxium Seriousness is 10 and no duplicate emails)"
             redirect_to root_path 
         end 
     end 

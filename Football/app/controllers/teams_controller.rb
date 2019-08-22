@@ -25,17 +25,25 @@ class TeamsController < ApplicationController
     end 
 
     def edit 
-        @user = current_user
         @league = League.find_by(id: params[:league_id])
         @team = Team.find(params[:id])
     end 
 
     def update 
+        @user = current_user
         @team = Team.find(params[:id])
         @team.update(team_params)
         @team.save
-        redirect_to league_team_path(@league, @team)
+        redirect_to league_team_path(@team)
     end 
+
+
+    def destroy
+        @team = Team.find(params[:id])
+        @team.destroy
+        redirect_to league_team_path
+    end
+
 
 
     private

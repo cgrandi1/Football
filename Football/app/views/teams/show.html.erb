@@ -4,7 +4,7 @@
 <% @team.players.each do |t| %>
 
     <p>Player Name: <%=t.name %></p>
-    <p>Player Position<%=t.position %></p>
+    <p>Player Position: <%=t.position %></p>
     <p>Player Starts?: <%=t.starter %></p>
     <p>Player Fantasy Points: <%=t.fantasy_points %></p><br>
     <br>
@@ -12,4 +12,6 @@
 <%end%>
 
 
-<%=link_to "Edit Team", edit_league_team_path(@league, @team) %>
+<%=link_to "Delete Team", league_team_path(@league, @team) %>
+
+<%=link_to "Go Back to League", user_leagues_path(@league, @team) %>
