@@ -5,6 +5,7 @@
         <%=@user.leagues.each do |league|%>
     
             <%= content_tag(:p, (link_to "Look Inside Your League: #{league.name}", league_path(league)))%>
+
         <%end%>
     
     </ul>

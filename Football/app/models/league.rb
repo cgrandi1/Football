@@ -6,7 +6,11 @@ class League < ApplicationRecord
     validates :cost, presence: true
     validates :people_in_league, presence: true
 
-    #params in new league, 
+    #params in new league,
+    
+    def order_name
+        @user.leagues = League.all.order('name DESC')
+    end 
 
 end
 

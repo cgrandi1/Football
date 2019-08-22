@@ -6,10 +6,13 @@
 
 
 
-<%= link_to "Edit League", edit_user_league_path(@league) %><br>
+<%= link_to "Edit League", edit_user_league_path(@league), method: :patch %><br>
 
 <%= link_to "Build Your Team", new_league_team_path(@league) %><br>
 
 <%=link_to "Go Back to League", user_leagues_path(@user) %><br>
 
-<%=link_to "Show Your Team", user_leagues_path(@league.teams, @league) %>
+<%=link_to "Show Your Team", league_team_path(@league) %><br>
+
+<p><%=link_to "Delete League", user_league_path(@league), method: :delete %><p>
+

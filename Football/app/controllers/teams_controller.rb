@@ -20,8 +20,9 @@ class TeamsController < ApplicationController
     end 
 
     def show 
+        @league = League.find_by(id: params[:league_id]) 
+        @user = current_user
         @team = Team.find(params[:id])
-        @league = League.find_by(id: params[:league_id])
     end 
 
     def edit 
