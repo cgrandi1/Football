@@ -23,6 +23,7 @@ class TeamsController < ApplicationController
         @league = League.find_by(id: params[:league_id]) 
         @user = current_user
         @team = Team.find(params[:id])
+        
     end 
 
     def edit 
@@ -40,9 +41,10 @@ class TeamsController < ApplicationController
 
 
     def destroy
+        @user = current_user
         @team = Team.find(params[:id])
         @team.destroy
-        redirect_to user_league_path
+        redirect_to user_league_path(@user)
     end
 
 

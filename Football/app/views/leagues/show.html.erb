@@ -12,7 +12,11 @@
 
 <%=link_to "Go Back to League", user_leagues_path(@user) %><br>
 
-<%=link_to "Show Your Team", league_team_path(@league) %><br>
+<% if @team = nil %>
+    <%= link_to "Build Your Team", new_league_team_path(@league) %><br>
+<% else %>
+    <%=link_to "Show Your Team", league_team_path(@league) %><br>
+<%end %>
 
 <p><%=link_to "Delete League", user_league_path(@league), method: :delete %><p>
 

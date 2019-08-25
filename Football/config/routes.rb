@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy' 
+
   
     resources :users do
       resources :leagues 
@@ -16,5 +17,10 @@ Rails.application.routes.draw do
 
     resources :leagues do
       resources :teams 
-    end   
+    end  
+    
+    resources :footballs
+    get '/auth/google_oauth2/callback' => 'footballs#create'
+    get 'auth/failure' => redirect('/')
+
 end

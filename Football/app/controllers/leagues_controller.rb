@@ -17,13 +17,12 @@ class LeaguesController < ApplicationController
     def create 
         @user = current_user
         @league = League.create(league_params)
-        if @league.valid?
-            @league.save
-            redirect_to league_path(@league)
-        else 
-            flash[:message] = "Missing info in a field"
-            redirect_to root_path 
-        end 
+            if @league.save
+                redirect_to league_path(@league)
+            else 
+                flash[:message] = "Missing info in a field"
+                redirect_to root_path 
+            end  
     end 
 
     def show
