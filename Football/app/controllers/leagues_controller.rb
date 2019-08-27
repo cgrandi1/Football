@@ -4,6 +4,7 @@ class LeaguesController < ApplicationController
     def index
         @user = User.find_by(id: params[:user_id])
         if @user = current_user
+            session[:user_id] = @user.id
             @user.leagues = League.order_name
         else 
             redirect_to root_path
