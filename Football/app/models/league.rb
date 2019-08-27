@@ -8,9 +8,7 @@ class League < ApplicationRecord
 
     #params in new league,
     
-    def order_name
-        @user.leagues = League.all.order('name DESC')
-    end 
+    scope :order_name, -> { order(name: :asc) }
 
 end
 

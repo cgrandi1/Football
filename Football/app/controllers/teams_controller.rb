@@ -40,13 +40,6 @@ class TeamsController < ApplicationController
     end 
 
 
-    def destroy
-        @user = current_user
-        @team = Team.find(params[:id])
-        @team.destroy
-        redirect_to user_league_path(@user)
-    end
-
 
 
     private

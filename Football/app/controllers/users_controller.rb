@@ -9,7 +9,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id  #logs in the user
              redirect_to user_leagues_path(@user)
         else 
-            flash[:message] = "Please Try Again! (Maxium Seriousness is 10 and no duplicate emails)"
+            flash[:message] = "Please Try Again!"
             redirect_to root_path 
         end 
     end 

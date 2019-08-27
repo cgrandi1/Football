@@ -12,9 +12,6 @@ class FootballsController < ApplicationController
       redirect_to user_leagues_path(@user)
     end
   
-    def index
-    end
-  
     private
   
     def auth

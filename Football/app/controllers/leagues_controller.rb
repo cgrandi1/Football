@@ -4,7 +4,7 @@ class LeaguesController < ApplicationController
     def index
         @user = User.find_by(id: params[:user_id])
         if @user = current_user
-            @user.leagues = League.all.order('name DESC')
+            @user.leagues = League.order_name
         else 
             redirect_to root_path
         end 
@@ -44,7 +44,7 @@ class LeaguesController < ApplicationController
     def destroy
         @league = League.find(params[:id])
         @league.destroy
-        redirect_to user_leagues_path
+        redirect_to user_leagues_path(@user)
       end
 
     private

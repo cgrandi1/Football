@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_22_173258) do
+ActiveRecord::Schema.define(version: 2019_08_27_020557) do
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2019_08_22_173258) do
     t.string "email"
     t.string "password_digest"
     t.integer "age"
-    t.integer "seriousness_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "uid"
