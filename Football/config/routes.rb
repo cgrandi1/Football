@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
-  get '/logout' => 'sessions#destroy' 
+  post '/logout' => 'sessions#destroy' 
+  
 
   
     resources :users do

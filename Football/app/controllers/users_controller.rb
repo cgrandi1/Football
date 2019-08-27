@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     def show
         if logged_in?
           @user = current_user
+          redirect_to user_leagues_path(@user)
         else
           redirect_to root_path
         end
@@ -25,6 +26,14 @@ class UsersController < ApplicationController
     private 
 
     def user_params
-        params.require(:user).permit(:name, :age, :seriousness_level, :email, :password, :password_confirmation)
+        params.require(:user).permit(:name, :age, :email, :password, :password_confirmation)
     end 
+
+    def only_see_own_page
+        @user = User.find(params[:id])
+      
+        if current_user != @user
+          redirect_to root_path, notice: "Sorry, but you are only allowed to view your own profile page."
+        end
+    end
 end

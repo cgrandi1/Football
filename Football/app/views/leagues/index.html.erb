@@ -1,5 +1,5 @@
 
-        <h1>A List of your Leagues</h1>
+        <h1><%= "A List of #{@user.name}'s Leagues"%></h1>
 
     <ul>
         <% @user.leagues.order_name.each do |league|%>
