@@ -4,7 +4,7 @@ class LeaguesController < ApplicationController
     def index
         @user = User.find_by(id: params[:user_id])
         if @user = current_user
-            @user.leagues
+            @user.leagues 
         else 
             redirect_to root_path
         end 
@@ -21,7 +21,7 @@ class LeaguesController < ApplicationController
                 redirect_to league_path(@league)
             else 
                 flash[:message] = "Missing info in a field"
-                redirect_to root_path 
+                redirect_to user_leagues_path(@user)
             end  
     end 
 

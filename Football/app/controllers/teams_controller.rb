@@ -26,22 +26,6 @@ class TeamsController < ApplicationController
         
     end 
 
-    def edit 
-        @league = League.find_by(id: params[:league_id])
-        @team = Team.find(params[:id])
-    end 
-
-    def update 
-        @user = current_user
-        @team = Team.find(params[:id])
-        @team.update(team_params)
-        @team.save
-        redirect_to league_team_path(@team)
-    end 
-
-
-
-
     private
 
     def team_params

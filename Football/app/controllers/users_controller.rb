@@ -29,11 +29,11 @@ class UsersController < ApplicationController
         params.require(:user).permit(:name, :age, :email, :password, :password_confirmation)
     end 
 
-    def only_see_own_page
-        @user = User.find(params[:id])
+    # def only_see_own_page
+    #     @user = User.find(params[:id])
       
-        if current_user != @user
-          redirect_to root_path, notice: "Sorry, but you are only allowed to view your own profile page."
-        end
-    end
+    #     if current_user != @user
+    #       redirect_to root_path, notice: "Sorry, but you are only allowed to view your own profile page."
+    #     end
+    # end
 end

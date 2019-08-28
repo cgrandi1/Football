@@ -1,6 +1,6 @@
 class League < ApplicationRecord
     has_many :teams
-    has_many :users, :through => :teams
+    belongs_to :user
 
     validates :name, presence: true 
     validates :cost, presence: true
