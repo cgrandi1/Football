@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id  #logs in the user
-             redirect_to user_leagues_path(@user)
+             redirect_to user_leagues_path(@user.leagues)
         else 
             flash[:message] = "Please Try Again!"
             redirect_to root_path 
