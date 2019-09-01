@@ -13,4 +13,6 @@
         <%= link_to "Create New League", new_user_league_path(@user) %><br>
         <br>
 
-        <%= link_to "Log Out", logout_url, method: :destroy %>
+        <%= link_to "Log Out", logout_url, method: :destroy %><br>
+
+        <%= link_to "Most Leagues by a User", user_leagues_most_path %>

@@ -10,5 +10,7 @@ class League < ApplicationRecord
     
     scope :order_name, -> { order(name: :asc) }
 
+    scope :most_leagues, -> { User.joins(:leagues).group(:user_id).order(:league_id).count }
+
 end
 

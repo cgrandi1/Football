@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :teams
   resources :users
   resource :sessions, only: [:new, :create, :destroy]
+  
+  get 'user_leagues/most' => 'leagues#max_league'
+  
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'sessions#new'
@@ -14,7 +17,7 @@ Rails.application.routes.draw do
 
   
     resources :users do
-      resources :leagues
+      resources :leagues do  
     end 
 
     resources :leagues do
@@ -25,4 +28,5 @@ Rails.application.routes.draw do
     get '/auth/google_oauth2/callback' => 'footballs#create'
     get 'auth/failure' => redirect('/')
 
-end
+  end 
+end 

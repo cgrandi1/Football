@@ -48,6 +48,12 @@ class LeaguesController < ApplicationController
         redirect_to user_leagues_path(@user)
       end
 
+      def max_league
+        @league = League.most_leagues
+        user = @league.max_by{|k,v| v}
+        @user = User.find_by_id(user[0])
+      end 
+
     private
 
     def league_params
