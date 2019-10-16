@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
         @team = Team.new(team_params)
         @team.user = current_user
         @team.save
-        redirect_to league_team_path(@league, @team)
+        redirect_to team_path(@league, @team)
     end 
 
     def show 

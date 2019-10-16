@@ -2,12 +2,18 @@ class LeaguesController < ApplicationController
     before_action :require_login
 
     def index
-        @user = User.find_by(id: params[:user_id])
-        if @user = current_user
-            @user.leagues 
-        else 
-            redirect_to root_path
+        @leagues = League.all
+        respond_to do |f|
+            f.html{render index}
+            f.json{render json: @leagues}
         end 
+
+        # @user = User.find_by(id: params[:user_id])
+        # if @user = current_user
+        #     @user.leagues 
+        # else 
+        #     redirect_to root_path
+        # end 
     end 
 
     def new 
@@ -47,6 +53,11 @@ class LeaguesController < ApplicationController
         @league.destroy
         redirect_to user_leagues_path(@user)
       end
+
+    #   def body 
+    #     @league = League.find(params[:id])
+    #     render plain: @league.name
+    #   end 
 
       def max_league
         @league = League.most_leagues

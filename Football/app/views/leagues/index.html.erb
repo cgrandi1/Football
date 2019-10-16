@@ -1,14 +1,12 @@
             <%= flash[:message] if flash[:message] %>
-        <h1><%= "A List of #{@user.name}'s Leagues"%></h1>
-
-    <ul>
-        <% @user.leagues.order_name.each do |league|%>
+            <div id="league-index">
+            <% @leagues.each do |league| %>
+            <h3>
+                <%= content_tag(:p, (link_to "Look Inside Your League: #{league.name}", league_path(league)))%>
+                
+                <%end%>
+            </div>
     
-            <%= content_tag(:p, (link_to "Look Inside Your League: #{league.name}", league_path(league)))%>
-
-        <%end%>
-    
-    </ul>
 
         <%= link_to "Create New League", new_user_league_path(@user) %><br>
         <br>
@@ -16,3 +14,5 @@
         <%= link_to "Log Out", logout_url, method: :destroy %><br>
 
         <%= link_to "Most Leagues by a User", user_leagues_most_path %>
+
+           
