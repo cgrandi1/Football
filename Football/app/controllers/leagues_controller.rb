@@ -3,38 +3,54 @@ class LeaguesController < ApplicationController
 
     def index
         @leagues = League.all
+        render json: @leagues
+        # end 
+
+        @user = User.find_by(id: params[:user_id])
+        if @user = current_user
+            @user.leagues 
+        else 
+            redirect_to root_path
+        end 
+    end 
+
+    def show
+        @leagues = League.all
         respond_to do |f|
             f.html{render index}
             f.json{render json: @leagues}
         end 
-
-        # @user = User.find_by(id: params[:user_id])
-        # if @user = current_user
-        #     @user.leagues 
-        # else 
-        #     redirect_to root_path
-        # end 
+        # @league = League.find(params[:id])
+        # @user = current_user
     end 
+
 
     def new 
         @league = League.new
     end 
 
     def create 
-        @user = current_user
-        @league = League.create(league_params)
-            if @league.save
-                redirect_to league_path(@league)
-            else 
-                flash[:message] = "Missing info in a field"
-                redirect_to user_leagues_path(@user)
-            end  
-    end 
 
-    def show
-        @league = League.find(params[:id])
-        @user = current_user
+        @league = League.new(league_params)
+        if @league.save
+            respond_to do |f|
+                f.html{redirect_to league_path}
+                f.json{render json: @leagues}
+            end 
+        end 
+        render :new 
+
     end 
+        # @user = current_user
+        # @league = League.create(league_params)
+        #     if @league.save
+        #         redirect_to league_path(@league)
+        #     else 
+        #         flash[:message] = "Missing info in a field"
+        #         redirect_to user_leagues_path(@user)
+        #     end  
+    # end 
+
 
     def edit 
         @league = League.find(params[:id])

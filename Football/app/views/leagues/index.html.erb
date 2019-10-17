@@ -1,13 +1,31 @@
-            <%= flash[:message] if flash[:message] %>
-            <div id="league-index">
-            <% @leagues.each do |league| %>
-            <h3>
-                <%= content_tag(:p, (link_to "Look Inside Your League: #{league.name}", league_path(league)))%>
-                
-                <%end%>
-            </div>
+# <%= flash[:message] if flash[:message] %>
+# <div id="league-index">
+# <% @leagues.each do |league| %>
+# <h3>
+#     <%= content_tag(:p, (link_to "Look Inside Your League: #{league.name}", league_path(league)))%>
     
+#     <%end%>
+# </div>
 
+
+
+<h1>Leagues</h1>
+<% @leagues.each do |league| %>
+  <h3><%= league.name %></h3>
+  <div id="league-<%= league.id %>"></div>
+  <button class="js-more" data-id="<%= league.id %>">More Info</button><br>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/leagues/" + id) 
+  });
+});
+</script>
+
+        
         <%= link_to "Create New League", new_user_league_path(@user) %><br>
         <br>
 
