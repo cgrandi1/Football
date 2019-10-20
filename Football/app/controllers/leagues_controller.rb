@@ -3,7 +3,7 @@ class LeaguesController < ApplicationController
 
     def index
         @leagues = League.all
-        render json: @leagues
+        # render json: @leagues
         # end 
 
         @user = User.find_by(id: params[:user_id])
@@ -14,19 +14,15 @@ class LeaguesController < ApplicationController
         end 
     end 
 
-    def show
-        @leagues = League.all
-        respond_to do |f|
-            f.html{render index}
-            f.json{render json: @leagues}
-        end 
-        # @league = League.find(params[:id])
-        # @user = current_user
-    end 
-
-
     def new 
         @league = League.new
+    end 
+
+    def show
+        @leagues = League.all
+        # render json: @leagues 
+        @league = League.find(params[:id])
+        @user = current_user
     end 
 
     def create 
@@ -39,7 +35,7 @@ class LeaguesController < ApplicationController
             end 
         end 
         render :new 
-
+    
     end 
         # @user = current_user
         # @league = League.create(league_params)
@@ -75,6 +71,16 @@ class LeaguesController < ApplicationController
     #     render plain: @league.name
     #   end 
 
+    def cost
+        league = League.find_by_id(params[:id])
+        render plain: league.cost
+    end 
+
+    def people_in_league 
+        league = League.find_by_id(params[:id])
+        render plain: league.people_in_league
+    end 
+
       def max_league
         @league = League.most_leagues
         user = @league.max_by{|k,v| v}
@@ -82,6 +88,10 @@ class LeaguesController < ApplicationController
       end 
 
     private
+
+    # def set_league
+    #     @league = League.find(params[:id])
+    #   end
 
     def league_params
         params.require(:league).permit(:name, :cost, :people_in_league, :user_id)

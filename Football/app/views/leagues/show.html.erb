@@ -3,61 +3,26 @@
 <p class="leagueCost"><%= @league.cost %></p>
 <p class="leaguePeopleInLeague"><%=@league.people_in_league%></p>
 
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  event.preventDefault()
-  $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/leagues/" + nextId + ".json", function(data) {
-      $(".leagueName").text(data["name"]);
-      $(".leagueCost").text(data["cost"]);
-      $(".leaguePeopleInLeague").text(data["people_in_league"]);
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
-    });
-  });
-});
 
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="ut-8">
-        <title>Add A Comment About Your League</title>
-    </head>
-    <body>
-        <div id="review">
-
-        </div>
-        <script src="leagues.js"></script>
-    </body>
-</html>
+<p> <%= button_to "Create Your Team", new_user_league_path(@user) %><br>
 
 
 
 
+<%= button_to "Edit League", edit_user_league_path(@user, @league), method: :get %><br>
+
+<%= button_to "Build Your Team", new_team_path(@league) %><br>
 
 
-# <h1>Your Team Name: <%=@league.name %></h1><br>
+<%=button_to "Go Back to League", user_leagues_path(@user) %><br>
 
-# <p>This League Costs: <%= @league.cost %></p><br>
+<% if @league.teams.empty? %>
+    <p>No Teams </p>
+<% else %>
+    <% @league.teams.each do |team| %>
+        <%=link_to team.name, league_team_path(@league, team) %><br>
+    <% end %>
+<% end %>
 
-# <p>The Amount of People in this League: <%= @league.people_in_league %><p><br>
-
-
-
-# <%= link_to "Edit League", edit_user_league_path(@user, @league), method: :get %><br>
-
-# <%= link_to "Build Your Team", new_team_path(@league) %><br>
-
-
-# <%=link_to "Go Back to League", user_leagues_path(@user) %><br>
-
-# <% if @league.teams.empty? %>
-#     <p>No Teams </p>
-# <% else %>
-#     <% @league.teams.each do |team| %>
-#         <%=link_to team.name, league_team_path(@league, team) %><br>
-#     <% end %>
-# <% end %>
-
-# <p><%=link_to "Delete League", user_league_path(@league), method: :delete %><p>
+<p><%=button_to "Delete League", user_league_path(@league), method: :delete %><p>
 

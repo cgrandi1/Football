@@ -1,36 +1,17 @@
-# <%= flash[:message] if flash[:message] %>
-# <div id="league-index">
-# <% @leagues.each do |league| %>
-# <h3>
-#     <%= content_tag(:p, (link_to "Look Inside Your League: #{league.name}", league_path(league)))%>
-    
-#     <%end%>
-# </div>
-
-
-
-<h1>Leagues</h1>
 <% @leagues.each do |league| %>
-  <h3><%= league.name %></h3>
-  <div id="league-<%= league.id %>"></div>
-  <button class="js-more" data-id="<%= league.id %>">More Info</button><br>
-<% end %>
+    <h1><%=league.name%></h1>
+    <div id="body-<%= league.id %>"></div>
+    <input type="submit" class="js-more" data-id="<%=league.id %>" value="More Info"</input>
+     <%= button_to "View Page: #{league.name}", league_path(league), method: "get"%></p>
+     <%end%>
 
-<script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-more").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/leagues/" + id) 
-  });
-});
-</script>
 
-        
-        <%= link_to "Create New League", new_user_league_path(@user) %><br>
-        <br>
 
-        <%= link_to "Log Out", logout_url, method: :destroy %><br>
+<%= button_to "Create New League", new_user_league_path(@user), method: "get" %><br>
+<br>
 
-        <%= link_to "Most Leagues by a User", user_leagues_most_path %>
+<%= button_to "Log Out", logout_url, method: :destroy %><br>
+
+<%= button_to "Most Leagues by a User", user_leagues_most_path, method: "get" %>
 
            

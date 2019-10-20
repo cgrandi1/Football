@@ -1,22 +1,59 @@
+<%= form_for(@league) do |f| %>
+    <% if @league.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@league.errors.count, "error") %> prohibited this post from being saved:</h2>
+  
+        <ul>
+        <% @league.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-<%= flash[:message] if flash[:message] %>
+  
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :names %>
+    </div>
 
-<%= form_for (@league) do |f|%>
-    <%= f.label :name%>
-    <%= f.text_field :name %>
-    <br>
- 
-    <%= f.label :cost %>
-    <%= f.number_field :cost %>
-    <br>
- 
-    <%= f.label :people_in_league %>
-    <%= f.number_field :people_in_league %>
-    <br>
-
-    <%= f.submit %>
+    <div class="field">
+        <%= f.label :cost %><br>
+        <%= f.text_field :cost %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :people_in_league %><br>
+      <%= f.text_field :people_in_league %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 
     <%= hidden_field_tag 'league[user_id]', params[:user_id] %>
+  <% end %>
 
- <% end %>
+
+
+# <%= flash[:message] if flash[:message] %>
+
+# <%= form_for (@league) do |f|%>
+#     <%= f.label :name%>
+#     <%= f.text_field :name %>
+#     <br>
+ 
+#     <%= f.label :cost %>
+#     <%= f.number_field :cost %>
+#     <br>
+ 
+#     <%= f.label :people_in_league %>
+#     <%= f.number_field :people_in_league %>
+#     <br>
+
+#     <%= f.submit %>
+
+#     <%= hidden_field_tag 'league[user_id]', params[:user_id] %>
+
+#  <% end %>
 
