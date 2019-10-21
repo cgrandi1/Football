@@ -32,12 +32,49 @@ $(function () {
     });
   });
 
-// function listenForclick(){
-//     $('button#league-data').on('click', function(event) {
-//         event.preventDefault()
-//         getLeagues()
-//     })
-// };
+
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault();
+ 
+      var values = $(this).serialize();
+ 
+      var posting = $.league('/leagues', values);
+ 
+      posting.done(function(data) {
+        console.log(data)
+        $("#legaueName").text(data["name"]);
+        $("#leagueCost").text(data["cost"]);
+        $("#leaguePeopel_In_League").text(data["people_in_league"]);
+      });
+    });
+  });
+
+
+//   function render(data){
+//     let html = "<div class='form></div>","id"=data.name, 
+//     $('#container').append(html)
+//   }
+
+  $(document).ready(function(){
+      var comment = []
+      for(var i=0; i<comment.length;i++){
+          render(comment[i])
+          
+      }
+
+    $('addComment').click(function(){
+        var addObj= {
+            "date": $('#date').val(),
+            "body": $('#bodyText').val()
+        }
+        console.log(addObj);
+        comment.push(addObj);
+        render(addObj);
+    })
+  }
+
+
 
 // function getLeagues() {
 //     %.ajax({

@@ -34,6 +34,23 @@
     <%= hidden_field_tag 'league[user_id]', params[:user_id] %>
   <% end %>
 
+<div id="productResult">
+  <h2 id="leaguetName"></h2>
+  <p id="leagueCost"></p>
+  <p id="leaguePeople_In_League"></p>
+</div>
+
+  <div class='form'>
+  <h3>Add Comment</h3>
+  Date: <input type="date" id="date" /> <br /><br />
+  Body: <textarea rows="5" col="30" id="bodyText"></textarea><br /><br />
+  <input type="button" id="addComment" value="Add Comment" />
+  
+  <div id="container">
+  </div>
+  
+  
+
 
 
 # <%= flash[:message] if flash[:message] %>

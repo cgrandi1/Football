@@ -1,3 +1,4 @@
+
 <a href="#" class="js-next" data-id="<%=@league.id%>">Next...</a>
 <h1 class="leagueName"><%= @league.name %></h1>
 <p class="leagueCost"><%= @league.cost %></p>
@@ -5,8 +6,6 @@
 
 
 <p> <%= button_to "Create Your Team", new_user_league_path(@user) %><br>
-
-
 
 
 <%= button_to "Edit League", edit_user_league_path(@user, @league), method: :get %><br>
@@ -25,4 +24,5 @@
 <% end %>
 
 <p><%=button_to "Delete League", user_league_path(@league), method: :delete %><p>
+
 

@@ -18,6 +18,11 @@ class LeaguesController < ApplicationController
         @league = League.new
     end 
 
+    def create
+        @league = Product.create(product_params)
+        render json: @league, status: 201
+    end
+
     def show
         @leagues = League.all
         # render json: @leagues 
@@ -25,18 +30,7 @@ class LeaguesController < ApplicationController
         @user = current_user
     end 
 
-    def create 
-
-        @league = League.new(league_params)
-        if @league.save
-            respond_to do |f|
-                f.html{redirect_to league_path}
-                f.json{render json: @leagues}
-            end 
-        end 
-        render :new 
     
-    end 
         # @user = current_user
         # @league = League.create(league_params)
         #     if @league.save
@@ -65,11 +59,6 @@ class LeaguesController < ApplicationController
         @league.destroy
         redirect_to user_leagues_path(@user)
       end
-
-    #   def body 
-    #     @league = League.find(params[:id])
-    #     render plain: @league.name
-    #   end 
 
     def cost
         league = League.find_by_id(params[:id])

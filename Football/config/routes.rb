@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy' 
   # get '/users/:id/leagues', to: 'leagues#body'
 
-  # get '/users/:id/leagues/cost', to: 'leagues#cost'
-  # get '/users/:id/leagues/people_in_league', to: 'leagues#people_in_league'
+  get '/users/:id/leagues/cost', to: 'leagues#cost'
+  get '/users/:id/leagues/people_in_league', to: 'leagues#people_in_league'
   
 
   
