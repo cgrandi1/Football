@@ -16,15 +16,25 @@ class LeaguesController < ApplicationController
 
     def new 
         @league = League.new
+        @league.save
     end 
 
     def create
-        @league = Product.create(product_params)
-        render json: @league, status: 201
-    end
+        # binding.pry
+        @league = League.create(league_params)
+        @league.user = current_user
+    
+        respond_to do |format|
+          if @league.save
+            format.html { redirect_to user_league_path(current_user, @league)}
+          else
+            format.html { render :new }
+          end
+        end
+      end
 
     def show
-        @leagues = League.all
+        # @leagues = League.all
         # render json: @leagues 
         @league = League.find(params[:id])
         @user = current_user
