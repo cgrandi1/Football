@@ -3,7 +3,7 @@
     <h1><%=league.name%></h1>
     <div id="body-<%= league.id %>"></div>
     <input type="submit" class="js-more" data-id="<%=league.id %>" value="More Info"</input>
-    <%=button_to "See League Individually", user_league_path(league), method: "get", class: "show-league"%></button>
+    <%=button_to "See League Individually", league_path(league), method: "get", class: "show-league"%></button>
 <%end%>
 <br>
 

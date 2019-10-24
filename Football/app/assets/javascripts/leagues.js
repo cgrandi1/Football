@@ -63,10 +63,11 @@ $(function () {
   });
 
   $(function(){
-    $(document).ready(function(data){
-      
-
-    }
+    $(".show-league").on("click", function(e){
+      e.preventDefault();
+      let id = $(this).data("id");
+      $.get(`/leagues/${id}`);
+    });
 
   })
 
