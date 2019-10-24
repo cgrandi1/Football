@@ -1,17 +1,26 @@
+<h2><%= button_to "Create League", new_user_league_path, method: "get", class: "create-league" %></h2>
 <% @leagues.each do |league| %>
     <h1><%=league.name%></h1>
     <div id="body-<%= league.id %>"></div>
     <input type="submit" class="js-more" data-id="<%=league.id %>" value="More Info"</input>
-     <%= button_to "View Page: #{league.name}", league_path(league), method: "get"%></p>
-     <%end%>
+    <%=button_to "See League Individually", user_league_path(league), method: "get", class: "show-league"%></button>
+<%end%>
+<br>
+
+<div id="productResult">
+  <h2 id="leaguetName"></h2>
+  <p id="leagueCost"></p>
+  <p id="leaguePeople_In_League"></p>
+</div>
 
 
-
-<%= button_to "Create New League", new_user_league_path(@user), method: "get" %><br>
 <br>
 
 <%= button_to "Log Out", logout_url, method: :destroy %><br>
 
 <%= button_to "Most Leagues by a User", user_leagues_most_path, method: "get" %>
+
+<div id="leagues"></div>
+<div id="createLeagues"></div> 
 
            

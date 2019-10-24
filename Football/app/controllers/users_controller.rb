@@ -14,14 +14,14 @@ class UsersController < ApplicationController
         end 
     end 
 
-    def show
-        if logged_in?
-          @user = current_user
-          redirect_to user_leagues_path(@user)
-        else
-          redirect_to root_path
-        end
-    end 
+    # def show
+    #     if logged_in?
+    #       @user = current_user
+    #       redirect_to user_league_path(@user)
+    #     else
+    #       redirect_to root_path
+    #     end
+    # end 
 
     private 
 

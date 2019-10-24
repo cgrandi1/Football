@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
   
   get 'user_leagues/most' => 'leagues#max_league'
+  get 'user_leagues/cost' => 'leagues#cost'
+  get 'user_leagues/people_in_league' => 'leagues#people_in_league'
   
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -13,10 +15,10 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   post '/logout' => 'sessions#destroy' 
-  # get '/users/:id/leagues', to: 'leagues#body'
+  
 
-  get '/users/:id/leagues/cost', to: 'leagues#cost'
-  get '/users/:id/leagues/people_in_league', to: 'leagues#people_in_league'
+  # get '/users/:id/leagues/cost', to: 'leagues#cost'
+  # get '/users/:id/leagues/people_in_league', to: 'leagues#people_in_league'
   
 
   
