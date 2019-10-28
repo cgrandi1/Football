@@ -15,12 +15,8 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   post '/logout' => 'sessions#destroy' 
-  
 
-  # get '/users/:id/leagues/cost', to: 'leagues#cost'
-  # get '/users/:id/leagues/people_in_league', to: 'leagues#people_in_league'
   
-
   
     resources :users do
       resources :leagues do  
@@ -31,7 +27,7 @@ Rails.application.routes.draw do
     end  
     
     resources :footballs
-    get '/auth/google_oauth2/callback' => 'footballs#create'
+    get '/user/auth/google_oauth2/callback' => 'footballs#create'
     get 'auth/failure' => redirect('/')
 
   end 

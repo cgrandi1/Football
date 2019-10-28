@@ -5,18 +5,13 @@
 
 
 
-// $(function () {
-//     $(".js-more").on("click", function(e) {
-//      e.preventDefault();
-//         let id = $(this).data("id");
-//         $.get(`/users/${id}/leagues/cost`, function(cost){
-//             $.get(`users/${id}/leagues/people_in_league`, function(people_in_league){
-//                 var texting = "<p>" + cost + "</p><p>" + people_in_league + "</p>";
-//                 $('#leagues').text(texting);
-//             }); 
-//         });
-//     });
-// });
+$(function () {
+  $(".create-league").on("click", function(e){
+    e.preventDefault();
+    let id = $(this).data("id");
+    $.get(`/users/${id}/leagues/new.json`)
+  });
+});
 
 $(function () {
   $(".js-more").on("click", function(e) {
@@ -26,11 +21,21 @@ $(function () {
         let leagues = data
         for(l = 0; l< leagues.length; l++){
           console.log(leagues)
-          $('#leagues').append(`<p> This league cost's: ${leagues[l].cost} <br> This league has ${leagues[l].people_in_league} people <br> You have ${leagues[l].teams} amount of teams </p>`)
+          $('#leagues').append(`<p> League Name: ${leagues[l].name} <br> This league cost's: ${leagues[l].cost} <br> This league has ${leagues[l].people_in_league} people </p>`)
         }
       });
   });
 });
+
+$(function(){
+  $(".show-league").on("click", function(e){
+    e.preventDefault();
+    let id = $(this).data("id");
+    $.get(`/leagues/${id}.json`)
+
+  });
+});
+
 
 
 //we need an id for each button.
@@ -53,7 +58,6 @@ $(function () {
       var posting = $.post('/leagues', values);
  
       posting.done(function(data) {
-        console.log(data)
         $("#legaueName").text(data["name"]);
         $("#leagueCost").text(data["cost"]);
         $("#leaguePeopel_In_League").text(data["people_in_league"]);
@@ -62,14 +66,7 @@ $(function () {
     });
   });
 
-  $(function(){
-    $(".show-league").on("click", function(e){
-      e.preventDefault();
-      let id = $(this).data("id");
-      $.get(`/leagues/${id}`);
-    });
 
-  })
 
   $(function () {
     $(".js-next").on("click", function(event) {
@@ -87,11 +84,20 @@ $(function () {
 
 class League {
     constructor(obj) {
-        this.id = obj.id
-        this.name = obj.name
-        this.cost = obj.cost
-        this.people_in_league = obj.people_in_league 
+        this.id = obj.id;
+        this.name = obj.name;
+        this.cost = obj.cost;
+        this.people_in_league = obj.people_in_league; 
+        this.created_at = obj.created_at;
         
     };
 };
+
+League.prototype.create = function () {
+  let c = `<li> This League was created on ${this.created_at}.</li>`
+  $('#created-at').append(c)
+};
+
+// var p = new League();
+// console.loge(p)
 

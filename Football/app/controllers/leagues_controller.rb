@@ -16,15 +16,33 @@ class LeaguesController < ApplicationController
         end 
     end 
 
-    def cost
-      league = League.find_by_id(params[:id])
-      render plain: league.cost
+    def new 
+      @league = League.new
+      @league.save
     end 
 
-    def people_in_league 
-      league = League.find_by_id(params[:id])
-      render plain: league.people_in_league
-    end 
+  def create
+    @league = League.create(league_params)
+    @league.user = current_user
+
+    respond_to do |format|
+      if @league.save
+        format.html { redirect_to user_leagues_path(@league.user)} 
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
+    # def cost
+    #   league = League.find_by_id(params[:id])
+    #   render plain: league.cost
+    # end 
+
+    # def people_in_league 
+    #   league = League.find_by_id(params[:id])
+    #   render plain: league.people_in_league
+    # end 
 
     def show
       @user = User.find(session[:user_id])
@@ -34,24 +52,6 @@ class LeaguesController < ApplicationController
         form.json{render json: @league}
       end 
     end 
-
-    def new 
-        @league = League.new
-        @league.save
-    end 
-
-    def create
-      @league = League.create(league_params)
-      @league.user = current_user
-  
-      respond_to do |format|
-        if @league.save
-          format.html { redirect_to user_leagues_path(@league.user)} 
-        else
-          format.html { render :new }
-        end
-      end
-    end
       
     def edit 
         @league = League.find(params[:id])

@@ -1,9 +1,10 @@
-<h2><%= button_to "Create League", new_user_league_path, method: "get", class: "create-league" %></h2>
+
+<h2><%= link_to "Create League", new_user_league_path%></h2>
 <% @leagues.each do |league| %>
-    <h1><%=league.name%></h1>
+    <h1><%=league.id%>: <%=league.name%></h1>
     <div id="body-<%= league.id %>"></div>
-    <input type="submit" class="js-more" data-id="<%=league.id %>" value="More Info"</input>
-    <%=button_to "See League Individually", league_path(league), method: "get", class: "show-league"%></button>
+    <input type="submit" class="js-more" data-id="<%=league.id %>" value="More Info" </input><br>
+    <%=link_to "See League Individually", league_path(league) %></button>
 <%end%>
 <br>
 
@@ -22,5 +23,6 @@
 
 <div id="leagues"></div>
 <div id="createLeagues"></div> 
+<div id="created-at"></div>
 
            
