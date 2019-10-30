@@ -23,6 +23,11 @@ class UsersController < ApplicationController
         end
     end 
 
+    # def user_leagues
+    #     @user = User.find(params[:user_id])
+    #     @leagues = @user.leagues
+    # end 
+
     private 
 
     def user_params

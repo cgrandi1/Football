@@ -5,13 +5,13 @@
 
 
 
-$(function () {
-  $(".create-league").on("click", function(e){
-    e.preventDefault();
-    let id = $(this).data("id");
-    $.get(`/users/${id}/leagues/new.json`)
-  });
-});
+// $(function () {
+//   $(".create-league").on("click", function(e){
+//     e.preventDefault();
+//     let id = $(this).data("id");
+//     $.get(`/users/${id}/leagues/new.json`)
+//   });
+// });
 
 $(function () {
   $(".js-more").on("click", function(e) {
@@ -27,14 +27,14 @@ $(function () {
   });
 });
 
-$(function(){
-  $(".show-league").on("click", function(e){
-    e.preventDefault();
-    let id = $(this).data("id");
-    $.get(`/leagues/${id}.json`)
+// $(function(){
+//   $(".show-league").on("click", function(e){
+//     e.preventDefault();
+//     let id = $(this).data("id");
+//     $.get(`/leagues/${id}.json`)
 
-  });
-});
+//   });
+// });
 
 
 
@@ -84,19 +84,23 @@ $(function(){
 
 class League {
     constructor(obj) {
-        this.id = obj.id;
-        this.name = obj.name;
-        this.cost = obj.cost;
-        this.people_in_league = obj.people_in_league; 
-        this.created_at = obj.created_at;
+      this.id = obj.id
+      this.name = obj.name;
+      this.cost = obj.cost;
+      this.people_in_league = obj.people_in_league; 
+      this.created_at = obj.created_at;
+      this.user_id = obj.user_id
         
     };
 };
 
-League.prototype.create = function () {
+League.prototype.showLi = function () {
   let c = `<li> This League was created on ${this.created_at}.</li>`
   $('#created-at').append(c)
 };
+
+// let p = new League();
+// console.log(p)
 
 // var p = new League();
 // console.loge(p)

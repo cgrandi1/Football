@@ -8,12 +8,12 @@
 <p> <%= button_to "Create Your Team", new_user_league_path(@user) %><br>
 
 
-<%= button_to "Edit League", edit_user_league_path(@user, @league), method: :get %><br>
+<%= link_to "Edit League", edit_user_league_path(@user, @league) %><br>
 
-<%= button_to "Build Your Team", new_team_path(@league) %><br>
+<%= link_to "Build Your Team", new_team_path(@league) %><br>
 
 
-<%=button_to "Go Back to League", user_leagues_path(@user) %><br>
+<%=link_to "Go Back to League", user_leagues_path(@user) %><br>
 
 <% if @league.teams.empty? %>
     <p>No Teams </p>
@@ -23,6 +23,6 @@
     <% end %>
 <% end %>
 
-<p><%=button_to "Delete League", user_league_path(@league), method: :delete %><p>
+<p><%=link_to "Delete League", user_league_path(@league) %><p>
 
 

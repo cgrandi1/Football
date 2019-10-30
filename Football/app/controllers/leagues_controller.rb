@@ -2,18 +2,15 @@ class LeaguesController < ApplicationController
     before_action :require_login
 
     def index
-      @leagues = League.all
+      @user = current_user
+      @leagues = @user.leagues
       respond_to do |form|
         form.html{render :index}
         form.json{render json: @leagues}
       end 
-
-        @user = User.find_by_id(id: params[:user_id])
-        if @user = current_user
-            @user.leagues 
-        else 
-            redirect_to root_path
-        end 
+      if @user = session[:id]
+        logged_in?
+      end 
     end 
 
     def new 

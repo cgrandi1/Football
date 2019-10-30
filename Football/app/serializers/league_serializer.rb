@@ -1,5 +1,5 @@
 class LeagueSerializer < ActiveModel::Serializer
-  attributes :id, :name, :cost, :people_in_league
+  attributes :id, :name, :cost, :people_in_league, :user_id
 
     has_many :teams
     belongs_to :user

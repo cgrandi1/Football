@@ -4,7 +4,7 @@
 
 <p> Existing User: </p>
 
-<%= form_for @user, url: 'sessions_path' do |f| %>
+<%= form_for :user, :url => sessions_path do |f| %>
     <%=f.label :email %>
     <%= f.text_field :email %></br>
 
