@@ -1,8 +1,9 @@
 
 <a href="#" class="js-next" data-id="<%=@league.id%>">Next Team</a>
 <h1 class="leagueName"><%= @league.name %></h1>
-<p class="leagueCost"><%= @league.cost %></p>
-<p class="leaguePeopleInLeague"><%=@league.people_in_league%></p>
+<p class="leagueCost">Cost: $<%= @league.cost %></p>
+<p class="leaguePeopleInLeague">Amount of People: <%=@league.people_in_league%></p>
+
 
 
 <p> <%= button_to "Create Your Team", new_user_league_path(@user) %><br>
@@ -23,6 +24,12 @@
     <% end %>
 <% end %>
 
-<p><%=link_to "Delete League", user_league_path(@league) %><p>
+<p><%=link_to "Delete League", user_league_path(@league), get: "delete" %><p>
+
+<a href="#" class="js-create" data-id="<%=@league.id%>">When League was Created</a>
+
+<div id="createdLeague" ></div>
+
+
 
 

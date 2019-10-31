@@ -11,26 +11,25 @@
       </div>
     <% end %>
 
-  <%= f.label :name%>
-  <%= f.text_field :name %>
-  <br>
-  
-  <%= f.label :cost %>
-  <%= f.number_field :cost %>
-  <br>
- 
-  <%= f.label :people_in_league %>
-  <%= f.number_field :people_in_league %>
-  <br>
-
-  <%= f.submit %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div><br>
+  <div class="field">
+    <%= f.label :cost %><br>
+    <%= f.text_field :cost %>
+  </div><br>
+  <div class="field">
+    <%= f.label :people_in_league %><br>
+    <%= f.text_field :people_in_league %>
+  </div><br>
+  <div class="actions">
+    <%= f.submit class: "create-league" %> 
+  </div>
 
   <%= hidden_field_tag 'league[user_id]', params[:user_id] %>
 
  <% end %>
-
-  
-
 
 
 

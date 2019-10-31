@@ -27,14 +27,6 @@ $(function () {
   });
 });
 
-// $(function(){
-//   $(".show-league").on("click", function(e){
-//     e.preventDefault();
-//     let id = $(this).data("id");
-//     $.get(`/leagues/${id}.json`)
-
-//   });
-// });
 
 
 
@@ -48,24 +40,37 @@ $(function () {
 //when clicked, get the form
 //create the league and append it on the page
 
+$('.create-league').on("submit", function() {
+    console.log(event)
+    event.preventDefault();
 
-  $(function () {
-    $('form').submit(function(event) {
-      event.preventDefault();
- 
-      var values = $(this).serialize();
- 
-      var posting = $.post('/leagues', values);
- 
-      posting.done(function(data) {
-        $("#legaueName").text(data["name"]);
-        $("#leagueCost").text(data["cost"]);
-        $("#leaguePeopel_In_League").text(data["people_in_league"]);
-        $('#productResult').append(`<p> Name: ${data.name}`)
-      });
+    var values = $(this).serialize();
+  
+
+    var posting = $.post('/leagues', values);
+
+    posting.done(function(data) {
+      $("#legaueName").text(data["name"]);
+      $("#leagueCost").text(data["cost"]);
+      $("#leaguePeopel_In_League").text(data["people_in_league"]);
+      $("#productResult").append(`<p> ${data.name} <>/p>`)
     });
   });
+});
 
+$(function (){
+  $(".js-create").on("click", function(e){
+    e.preventDefault();
+    let id = $(this).data("id");
+    $.get(`/leagues/${id}.json`, function(response){
+      let newLeague = new League(response)
+      let renderPage = newLeague.showHTML();
+       $('#createdLeague').html(renderPage)
+    });
+
+  });
+
+});
 
 
   $(function () {
@@ -83,25 +88,24 @@ $(function () {
 
 
 class League {
-    constructor(obj) {
-      this.id = obj.id
-      this.name = obj.name;
-      this.cost = obj.cost;
-      this.people_in_league = obj.people_in_league; 
-      this.created_at = obj.created_at;
-      this.user_id = obj.user_id
-        
-    };
+  constructor(obj){
+    this.id = obj.id;
+    this.name = obj.name;
+    this.cost = obj.cost;
+    this.people_in_league = obj.people_in_league
+    this.created_at = obj.created_at;
+  }
+}
+
+League.prototype.showHTML = function () {
+  return (`<p> Created: ${this.created_at}</p>`)
 };
 
-League.prototype.showLi = function () {
-  let c = `<li> This League was created on ${this.created_at}.</li>`
-  $('#created-at').append(c)
-};
+// {/* <div id="productResult">
+//   <h2 id="leaguetName"></h2>
+//   <p id="leagueCost"></p>
+//   <p id="leaguePeople_In_League"></p>
+// </div> */}
 
-// let p = new League();
-// console.log(p)
 
-// var p = new League();
-// console.loge(p)
-
+   
