@@ -21,13 +21,10 @@ class LeaguesController < ApplicationController
   def create
     @league = League.create(league_params)
     @league.user = current_user
-
-    respond_to do |format|
-      if @league.save
-        format.html { redirect_to user_leagues_path(@league.user)} 
-      else
-        format.html { render :new }
-      end
+    if @league.save
+      render json: @league, status: 201
+    else
+      render :new
     end
   end
 

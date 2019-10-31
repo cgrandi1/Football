@@ -40,20 +40,18 @@ $(function () {
 //when clicked, get the form
 //create the league and append it on the page
 
-$('.create-league').on("submit", function() {
-    console.log(event)
+$(function () {
+  $('form').submit(function(event) {
     event.preventDefault();
 
     var values = $(this).serialize();
-  
-
     var posting = $.post('/leagues', values);
 
     posting.done(function(data) {
-      $("#legaueName").text(data["name"]);
-      $("#leagueCost").text(data["cost"]);
-      $("#leaguePeopel_In_League").text(data["people_in_league"]);
-      $("#productResult").append(`<p> ${data.name} <>/p>`)
+      $("leagueName").text(data["name"]);
+      $("leagueCost").text(data["cost"]);
+      $("#leaguePeopleInLeague").text(data["peope_in_league"]);
+      $("#productResult").append(`<p> Good job, you created ${data.name}!</p>`)
     });
   });
 });
@@ -108,4 +106,18 @@ League.prototype.showHTML = function () {
 // </div> */}
 
 
-   
+// let league = {
+//   name: $('#league_name')
+//   cost: $('#league_cost')
+//   people_in_league: $('#league_people_in_league')
+// }
+
+// $.ajax({
+//   type: "POST",
+//   url: this.action,
+//   data: league,
+//   success: function(response){
+//     console.log(response)
+
+//   }
+// })
