@@ -48,9 +48,6 @@ $(function () {
     var posting = $.post('/leagues', values);
 
     posting.done(function(data) {
-      $("leagueName").text(data["name"]);
-      $("leagueCost").text(data["cost"]);
-      $("#leaguePeopleInLeague").text(data["peope_in_league"]);
       $("#productResult").append(`<p> Good job, you created ${data.name}!</p>`)
     });
   });
