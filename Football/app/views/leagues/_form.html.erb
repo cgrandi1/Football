@@ -1,4 +1,4 @@
-<%= form_for(@league) do |f| %>
+<%= form_for @league, class: "add-league" do |f| %>
     <% if @league.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@league.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -24,7 +24,7 @@
     <%= f.text_field :people_in_league %>
   </div><br>
   <div class="action">
-    <%= f.submit id: "add-league", value: "Create League" %> 
+    <%= f.submit value: "Create League" %> 
   </div>
 
   <%= hidden_field_tag 'league[user_id]', params[:user_id] %>
@@ -32,9 +32,6 @@
  <% end %>
 
  <div id="productResult">
-  <p id="leagueName"></p>
-  <p id="leagueCost"></p>
-  <p id="leaguePeopleInLeague"></p>
 </div>
 
 

@@ -12,7 +12,7 @@ class LeaguesController < ApplicationController
         logged_in?
       end 
     end 
-
+    
     def new 
       @league = League.new
       @league.save
@@ -40,7 +40,7 @@ class LeaguesController < ApplicationController
 
     def show
       @user = User.find(session[:user_id])
-      @league = League.find(params[:id])
+      @league = League.find_by(id: params[:id])
       respond_to do |form|
         form.html{render :show}
         form.json{render json: @league}

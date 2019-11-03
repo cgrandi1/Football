@@ -1,7 +1,6 @@
 class TeamsController < ApplicationController
     before_action :require_login
 
-
     
     def new 
         @user = current_user
@@ -13,17 +12,15 @@ class TeamsController < ApplicationController
 
     def create
         @league = League.find_by(id: params[:team][:league_id])
-        @team = Team.new(team_params)
+        @team = Team.create(team_params)
         @team.user = current_user
-        @team.save
-        redirect_to team_path(@league, @team)
+        redirect_to user_league_team_path(@league, @team)
     end 
 
     def show 
         @league = League.find_by(id: params[:league_id]) 
         @user = current_user
-        @team = Team.find(params[:id])
-        
+        @team = Team.find_by(id: params[:id])
     end 
 
     private

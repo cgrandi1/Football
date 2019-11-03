@@ -27,6 +27,14 @@ $(function () {
   });
 });
 
+// $(function(){
+//   $(".js-sort").on("click", function(){
+//     let id = $(this).data("id");
+//     $.get(`/users/${id}/`)
+
+//   })
+
+// })
 
 
 
@@ -41,7 +49,7 @@ $(function () {
 //create the league and append it on the page
 
 $(function () {
-  $('form').submit(function(event) {
+  $('.add-league').submit(function(event) {
     event.preventDefault();
 
     var values = $(this).serialize();
@@ -52,6 +60,8 @@ $(function () {
     });
   });
 });
+
+
 
 $(function (){
   $(".js-create").on("click", function(e){
