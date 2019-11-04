@@ -13,6 +13,9 @@
 //   });
 // });
 
+
+
+
 $(function () {
   $(".js-more").on("click", function(e) {
    e.preventDefault();
@@ -27,14 +30,24 @@ $(function () {
   });
 });
 
-// $(function(){
-//   $(".js-sort").on("click", function(){
-//     let id = $(this).data("id");
-//     $.get(`/users/${id}/`)
 
-//   })
+$(function(){
+  $(".js-sort").on("click", function(){
+    let id = $(this).data("id");
+    $.get(`/users/${id}/leagues.json`, function(data){
+      var information = data
+      var newInfo = information.sort(function sortLeague(a,b){
+        return a["name"].localeCompare(b["name"]);
+      });
+        newInfo.forEach(function(object){
+          document.getElementById("sort").innerHTML += object["name"] + " - ";
+        })
+      })
+    });
+  });
 
-// })
+
+
 
 
 

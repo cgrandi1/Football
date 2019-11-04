@@ -1,8 +1,11 @@
 
 
 <h2><%= link_to "Create League", new_user_league_path(@user)%></h2>
+<button value="Sort", class="js-sort">Sort</button>
 <% @leagues.each do |league| %>
-    <h1><%=league.name%></h1>
+    <ul>
+    <h1><li><%=league.name%></li></h1>
+    </ul>
     <div id="body-<%= league.id %>"></div>
     <input type="submit" class="js-more" data-id="<%=league.id %>" value="More Info" </input><br>
     <%=link_to "See League Individually", user_league_path(@user, league) %>
@@ -18,7 +21,9 @@
 
 <%= button_to "Most Leagues by a User", user_leagues_most_path, method: "get" %>
 
-<div id="leagues"></div>
+<div id="leagues"></div><br>
 
-<button class="js-sort" data-id="<%=@user.id%>">Sort</button>
+<ul id="sort">
+
+
            

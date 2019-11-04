@@ -22,7 +22,7 @@
     <p>No Teams </p>
 <% else %>
     <% @league.teams.each do |team| %>
-        <%=link_to team.name, league_team_path(@league, team) %><br>
+        <%=link_to team.name, team_path(@league, team) %><br>
     <% end %>
 <% end %>
 
