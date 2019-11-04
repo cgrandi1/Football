@@ -1,7 +1,7 @@
 
 
 <h2><%= link_to "Create League", new_user_league_path(@user)%></h2>
-<button value="Sort", class="js-sort">Sort</button>
+<button onclick="sortLeague()", class="js-sort">Sort</button>
 <% @leagues.each do |league| %>
     <ul>
     <h1><li><%=league.name%></li></h1>
@@ -24,6 +24,7 @@
 <div id="leagues"></div><br>
 
 <ul id="sort">
+
 
 
            
